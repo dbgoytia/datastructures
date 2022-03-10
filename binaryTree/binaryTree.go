@@ -1,5 +1,7 @@
 package binaryTree
 
+import "fmt"
+
 type BinaryTree struct {
 	Root *BinaryTreeNode
 }
@@ -22,6 +24,7 @@ func NewNode(val int) BinaryTreeNode {
 // Inserts a new node on the binary tree
 // or returns an error otherwise
 func (bst *BinaryTree) InsertNode(root *BinaryTreeNode, val int) *BinaryTreeNode {
+
 	if root == nil {
 		return &BinaryTreeNode{
 			Val:   val,
@@ -29,12 +32,44 @@ func (bst *BinaryTree) InsertNode(root *BinaryTreeNode, val int) *BinaryTreeNode
 			Right: nil,
 		}
 	}
+
+	if val > root.Val {
+		if root.Right == nil {
+			n := &BinaryTreeNode{
+				Val:   val,
+				Left:  nil,
+				Right: nil,
+			}
+			root.Right = n
+		} else {
+			bst.InsertNode(root.Right, val)
+		}
+
+	} else if val < root.Val {
+		if root.Left == nil {
+			root.Left = &BinaryTreeNode{val, nil, nil}
+		} else {
+			bst.InsertNode(root.Left, val)
+		}
+	}
 	return root
 }
 
-// Visits all nodes in-order traversing
-func (bst *BinaryTree) InOrderTraverse() []int {
-	return []int{}
+// Returns the In Order Transversal as an slice of values
+// TODO: Implement return
+func (bst *BinaryTree) InOrderTraverse(root *BinaryTreeNode) []int {
+
+	if root == nil {
+		return
+	}
+
+	bst.InOrderTraverse(root.Left)
+	fmt.Printf("%d ", root.Val)
+	bst.InOrderTraverse(root.Right)
+}
+
+func (bst *BinaryTree) inOrderTraverseHelper(root *BinaryTreeNode, vals []int) {
+
 }
 
 // Prints a CLI readable rendering of the tree
