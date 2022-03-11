@@ -141,22 +141,6 @@ func (bst *BinarySearchTree) breadFirstArrayHelper(root *BinarySearchTreeNode, v
 
 }
 
-// // Calculates the height of the tree
-// func (bst *BinarySearchTree) Height(root *BinarySearchTreeNode) int {
-// 	if root == nil {
-// 		return 0
-// 	}
-
-// 	left := bst.Height(root.Left)
-// 	right := bst.Height(root.Right)
-
-// 	if left > right {
-// 		return left + 1
-// 	} else {
-// 		return right + 1
-// 	}
-// }
-
 // Prints a CLI readable rendering of the tree
 func (n *BinarySearchTreeNode) String() {
 }
