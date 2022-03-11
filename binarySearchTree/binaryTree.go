@@ -114,6 +114,22 @@ func (bst *BinarySearchTree) preOrderTraverseArrayHelper(root *BinarySearchTreeN
 	bst.preOrderTraverseArrayHelper(root.Right, vals)
 }
 
+// Returns the Post order transversal as an slice of values
+func (bst *BinarySearchTree) PostOrderTraverseArray(root *BinarySearchTreeNode) []int {
+	vals := make([]int, 0)
+	bst.postOrderTraversalArrayHelper(root, &vals)
+	return vals
+}
+
+func (bst *BinarySearchTree) postOrderTraversalArrayHelper(root *BinarySearchTreeNode, vals *[]int) {
+	if root == nil {
+		return
+	}
+	bst.postOrderTraversalArrayHelper(root.Left, vals)
+	bst.postOrderTraversalArrayHelper(root.Right, vals)
+	*vals = append(*vals, root.Val)
+}
+
 // Returns the elements of a tree in breadth-first arrays (level order)
 func (bst *BinarySearchTree) BreadFirstArray(root *BinarySearchTreeNode) []int {
 	vals := make([]int, 0)
