@@ -23,36 +23,38 @@ func NewNode(val int) BinarySearchTreeNode {
 
 // Inserts a new node on the binary tree
 // or returns an error otherwise
-func (bst *BinarySearchTree) InsertNode(root *BinarySearchTreeNode, val int) *BinarySearchTreeNode {
-
-	if root == nil {
-		return &BinarySearchTreeNode{
+func (bst *BinarySearchTree) InsertNode(val int) {
+	if bst.Root == nil {
+		bst.Root = &BinarySearchTreeNode{
 			Val:   val,
 			Left:  nil,
 			Right: nil,
 		}
 	}
+	bst.insertNodeHelper(bst.Root, val)
+}
 
+func (bst *BinarySearchTree) insertNodeHelper(root *BinarySearchTreeNode, val int) {
+	if root.Val == val {
+		return
+	}
 	if val > root.Val {
 		if root.Right == nil {
-			n := &BinarySearchTreeNode{
-				Val:   val,
-				Left:  nil,
-				Right: nil,
-			}
-			root.Right = n
+			root.Right = &BinarySearchTreeNode{val, nil, nil}
 		} else {
-			bst.InsertNode(root.Right, val)
+			bst.insertNodeHelper(root.Right, val)
 		}
-
-	} else if val < root.Val {
+	} else {
 		if root.Left == nil {
 			root.Left = &BinarySearchTreeNode{val, nil, nil}
 		} else {
-			bst.InsertNode(root.Left, val)
+			bst.insertNodeHelper(root.Left, val)
 		}
 	}
-	return root
+}
+
+// Removes the item from the Binary tree
+func (n *BinarySearchTreeNode) Remove(t BinarySearchTreeNode) {
 }
 
 // Calculates the height of the tree
@@ -180,10 +182,19 @@ func (bst *BinarySearchTree) Max(root *BinarySearchTreeNode) int {
 }
 
 // Returns true if Item exists in tree
-func (n *BinarySearchTreeNode) Search(value int) bool {
-	return true
-}
+func (bst *BinarySearchTree) BinarySearch(root *BinarySearchTreeNode, value int) bool {
 
-// Removes the item from the Binary tree
-func (n *BinarySearchTreeNode) Remove(t BinarySearchTreeNode) {
+	if root == nil {
+		return false
+	}
+
+	if root.Val == value {
+		return true
+	}
+
+	if root.Val <= value {
+		return bst.BinarySearch(root.Right, value)
+	} else {
+		return bst.BinarySearch(root.Left, value)
+	}
 }
