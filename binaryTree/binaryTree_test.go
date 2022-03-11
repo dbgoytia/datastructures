@@ -185,5 +185,79 @@ var _ = Describe("BinaryTree", func() {
 				Expect(traverse).To(Equal(res))
 			})
 		})
+
+		Context("perform pre-order traversal array of a tree", func() {
+			It("for perfect binary tree", func() {
+				// Given tree:
+				//         50
+				//       /    \
+				//     20      70
+				//    /  \    /   \
+				//   10  30  60    80
+				tree := binaryTree.BinaryTree{}
+				tree.Root = &binaryTree.BinaryTreeNode{50, nil, nil}
+				tree.Root.Left = &binaryTree.BinaryTreeNode{20, nil, nil}
+				tree.Root.Right = &binaryTree.BinaryTreeNode{70, nil, nil}
+				tree.Root.Left.Right = &binaryTree.BinaryTreeNode{30, nil, nil}
+				tree.Root.Left.Left = &binaryTree.BinaryTreeNode{10, nil, nil}
+				tree.Root.Right.Left = &binaryTree.BinaryTreeNode{60, nil, nil}
+				tree.Root.Right.Right = &binaryTree.BinaryTreeNode{80, nil, nil}
+				res := []int{50, 20, 10, 30, 70, 60, 80}
+				Expect(tree.PreOrderTraverseArray(tree.Root)).To(Equal(res))
+			})
+			It("for complete binary tree", func() {
+				// Given tree:
+				//       8
+				//      /  \
+				//     4    9
+				//    / \
+				//   3   6
+				tree := binaryTree.BinaryTree{}
+				tree.Root = &binaryTree.BinaryTreeNode{8, nil, nil}
+				tree.Root.Left = &binaryTree.BinaryTreeNode{4, nil, nil}
+				tree.Root.Right = &binaryTree.BinaryTreeNode{9, nil, nil}
+				tree.Root.Left.Left = &binaryTree.BinaryTreeNode{3, nil, nil}
+				tree.Root.Left.Right = &binaryTree.BinaryTreeNode{6, nil, nil}
+				res := []int{8, 4, 3, 6, 9}
+				Expect(tree.PreOrderTraverseArray(tree.Root)).To(Equal(res))
+			})
+
+			It("for degenerate tree", func() {
+				// Given tree:
+				//       1
+				//        \
+				//         3
+				//   		\
+				//   		 5
+				// 			  \
+				// 			   7
+				tree := binaryTree.BinaryTree{}
+				tree.Root = &binaryTree.BinaryTreeNode{1, nil, nil}
+				tree.Root.Right = &binaryTree.BinaryTreeNode{3, nil, nil}
+				tree.Root.Right.Right = &binaryTree.BinaryTreeNode{5, nil, nil}
+				tree.Root.Right.Right.Right = &binaryTree.BinaryTreeNode{7, nil, nil}
+				res := []int{1, 3, 5, 7}
+				Expect(tree.PreOrderTraverseArray(tree.Root)).To(Equal(res))
+			})
+
+			It("for semi-degenerate tree", func() {
+				// Given tree:
+				//        1
+				//       /
+				//      3
+				//   	 \
+				//   	  5
+				// 		   \
+				// 			7
+				tree := binaryTree.BinaryTree{}
+				tree.Root = &binaryTree.BinaryTreeNode{1, nil, nil}
+				tree.Root.Left = &binaryTree.BinaryTreeNode{3, nil, nil}
+				tree.Root.Left.Right = &binaryTree.BinaryTreeNode{5, nil, nil}
+				tree.Root.Left.Right.Right = &binaryTree.BinaryTreeNode{7, nil, nil}
+				res := []int{3, 5, 7, 1}
+				traverse := tree.InOrderTraverseArray(tree.Root)
+				Expect(traverse).To(Equal(res))
+			})
+		})
 	})
 })

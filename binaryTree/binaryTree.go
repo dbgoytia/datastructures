@@ -109,8 +109,8 @@ func (bst *BinaryTree) preOrderTraverseArrayHelper(root *BinaryTreeNode, vals *[
 	if root == nil {
 		return
 	}
-	bst.preOrderTraverseArrayHelper(root.Left, vals)
 	*vals = append(*vals, root.Val)
+	bst.preOrderTraverseArrayHelper(root.Left, vals)
 	bst.preOrderTraverseArrayHelper(root.Right, vals)
 }
 
