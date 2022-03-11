@@ -54,7 +54,8 @@ func (bst *BinarySearchTree) insertNodeHelper(root *BinarySearchTreeNode, val in
 }
 
 // Removes the item from the Binary tree
-func (n *BinarySearchTreeNode) Remove(t BinarySearchTreeNode) {
+func (n *BinarySearchTreeNode) Remove(val int) {
+
 }
 
 // Calculates the height of the tree

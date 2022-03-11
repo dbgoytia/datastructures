@@ -7,6 +7,15 @@ The most basic implementations of a Binary tree are:
 * Degenerate binary tree
 
 
+## Note
+
+In this implementation we're not going to be dealing with generics, right now,
+this binary search tree is only going to deal with integer values for learning
+purposes. Later on, I might add some datastructure that is able to handle generics.
+
+This datastructure is also not thread-safe, I might also implement a thread-safe
+version of this data structure.
+
 # Traversing the tree
 ## In-order traversal
 
