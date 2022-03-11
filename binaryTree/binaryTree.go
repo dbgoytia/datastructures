@@ -98,6 +98,22 @@ func (bst *BinaryTree) inOrderTraverseArrayHelper(root *BinaryTreeNode, vals *[]
 	bst.inOrderTraverseArrayHelper(root.Right, vals)
 }
 
+// Returns the In Order Transversal as an slice of values
+func (bst *BinaryTree) PreOrderTraverseArray(root *BinaryTreeNode) []int {
+	vals := make([]int, 0)
+	bst.preOrderTraverseArrayHelper(root, &vals)
+	return vals
+}
+
+func (bst *BinaryTree) preOrderTraverseArrayHelper(root *BinaryTreeNode, vals *[]int) {
+	if root == nil {
+		return
+	}
+	bst.preOrderTraverseArrayHelper(root.Left, vals)
+	*vals = append(*vals, root.Val)
+	bst.preOrderTraverseArrayHelper(root.Right, vals)
+}
+
 // Prints a CLI readable rendering of the tree
 func (n *BinaryTreeNode) String() {
 }
