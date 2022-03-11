@@ -158,8 +158,14 @@ func (bst *BinarySearchTree) breadFirstArrayHelper(root *BinarySearchTreeNode, v
 }
 
 // Returns item with the min value stored in tree
-func (n *BinarySearchTreeNode) Min() int {
-	return 0
+func (bst *BinarySearchTree) Min(root *BinarySearchTreeNode) int {
+	n := root
+	for {
+		if n.Left == nil {
+			return n.Val
+		}
+		n = n.Left
+	}
 }
 
 // Returns item with the max value stored in tree
