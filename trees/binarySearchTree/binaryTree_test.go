@@ -41,6 +41,43 @@ var _ = Describe("BinarySearchTree", func() {
 			})
 		})
 
+		Context("removes values", func() {
+
+			It("on leaf values", func() {
+				// Given tree:
+				//         50
+				//       /    \
+				//     20      70
+				//    /  \    /   \
+				//   10  30  60    80
+				tree := binarySearchTree.BinarySearchTree{}
+				tree.InsertNode(50)
+				tree.InsertNode(20)
+				tree.InsertNode(70)
+				tree.InsertNode(10)
+				tree.InsertNode(60)
+				tree.Root.Remove(80)
+				Expect(tree.Root.Right.Right).To(Equal(nil))
+			})
+
+			It("on nodes", func() {
+				// Given tree:
+				//         50
+				//       /    \
+				//     20      70
+				//    /  \    /   \
+				//   10  30  60    80
+				tree := binarySearchTree.BinarySearchTree{}
+				tree.InsertNode(50)
+				tree.InsertNode(20)
+				tree.InsertNode(70)
+				tree.InsertNode(10)
+				tree.InsertNode(60)
+				tree.Root.Remove(20)
+				Expect(tree.Root.Left).To(Equal(10))
+			})
+		})
+
 		Context("calculate the height of a tree", func() {
 
 			It("of complete binary tree", func() {
