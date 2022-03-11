@@ -56,7 +56,7 @@ var _ = Describe("BinarySearchTree", func() {
 				tree.InsertNode(70)
 				tree.InsertNode(10)
 				tree.InsertNode(60)
-				tree.Root.Remove(80)
+				tree.Remove(80)
 				Expect(tree.Root.Right.Right).To(Equal(nil))
 			})
 
@@ -73,7 +73,7 @@ var _ = Describe("BinarySearchTree", func() {
 				tree.InsertNode(70)
 				tree.InsertNode(10)
 				tree.InsertNode(60)
-				tree.Root.Remove(20)
+				tree.Remove(20)
 				Expect(tree.Root.Left).To(Equal(10))
 			})
 		})

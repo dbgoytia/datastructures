@@ -44,3 +44,23 @@ Algorithm PreOrder(tree)
 ## Sources
 
 * https://www.baeldung.com/cs/depth-first-traversal-methods
+
+
+## Tests
+```
+Summarizing 2 Failures:
+
+[Fail] BinarySearchTree The module is able to removes values [It] on leaf values 
+/Users/diego_canizales/go/src/github.com/dbgoytia/datastructures/trees/binarySearchTree/binaryTree_test.go:60
+
+[Fail] BinarySearchTree The module is able to removes values [It] on nodes 
+/Users/diego_canizales/go/src/github.com/dbgoytia/datastructures/trees/binarySearchTree/binaryTree_test.go:77
+
+Ran 34 of 34 Specs in 0.004 seconds
+FAIL! -- 32 Passed | 2 Failed | 0 Pending | 0 Skipped
+--- FAIL: TestBinaryTree (0.01s)
+FAIL
+
+Ginkgo ran 1 suite in 1.611383729s
+Test Suite Failed
+```
