@@ -114,6 +114,49 @@ func (bst *BinarySearchTree) preOrderTraverseArrayHelper(root *BinarySearchTreeN
 	bst.preOrderTraverseArrayHelper(root.Right, vals)
 }
 
+// Returns the elements of a tree in breadth-first arrays (level order)
+func (bst *BinarySearchTree) BreadFirstArray(root *BinarySearchTreeNode) []int {
+	vals := make([]int, 0)
+	height := bst.Height(root)
+	for i := 0; i <= height; i++ {
+		bst.breadFirstArrayHelper(root, &vals, i)
+	}
+	return vals
+}
+
+func (bst *BinarySearchTree) breadFirstArrayHelper(root *BinarySearchTreeNode, vals *[]int, level int) {
+
+	if root == nil {
+		return
+	}
+
+	if level == 1 {
+		*vals = append(*vals, root.Val)
+	}
+
+	if level > 1 {
+		bst.breadFirstArrayHelper(root.Left, vals, level-1)
+		bst.breadFirstArrayHelper(root.Right, vals, level-1)
+	}
+
+}
+
+// // Calculates the height of the tree
+// func (bst *BinarySearchTree) Height(root *BinarySearchTreeNode) int {
+// 	if root == nil {
+// 		return 0
+// 	}
+
+// 	left := bst.Height(root.Left)
+// 	right := bst.Height(root.Right)
+
+// 	if left > right {
+// 		return left + 1
+// 	} else {
+// 		return right + 1
+// 	}
+// }
+
 // Prints a CLI readable rendering of the tree
 func (n *BinarySearchTreeNode) String() {
 }
