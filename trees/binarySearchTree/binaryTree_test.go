@@ -4,7 +4,7 @@ import (
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 
-	"github.com/dbgoytia/datastructures/binarySearchTree"
+	"github.com/dbgoytia/datastructures/trees/binarySearchTree"
 )
 
 var _ = Describe("BinarySearchTree", func() {
