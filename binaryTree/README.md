@@ -16,4 +16,22 @@ Algorithm Inorder(tree)
 3. Traverse the right subtree, i.e., call Inorder(right-subtree)
 
 ### Applications 
-Not receiving the values in non-increasing order
+* Retrieve the sorted contents of a Binary Search Tree (ascending orders)
+
+## Pre-order traversal
+
+Algorithm PreOrder(tree)
+2. Visit the root.
+1. Traverse the left subtree, i.e., call PreOrder(left-subtree)
+3. Traverse the right subtree, i.e., call PreOrder(right-subtree)
+
+## Applications
+
+* Databases often perform pre-order traversal to traverse B-tree indexes during search operations
+* Useful when searching for an element within a binary search tree
+* The Linux Makefile utility.¡
+
+
+## Sources
+
+* https://www.baeldung.com/cs/depth-first-traversal-methods
