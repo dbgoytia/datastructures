@@ -24,72 +24,160 @@ var _ = Describe("BinaryTree", func() {
 		Expect(tree.Root == &node)
 	})
 
-	It("Inserts value in the correct position when received in disorder", func() {
-		// Expected tree:
-		//		  4
-		//       / \
-		//      2   7
-		//     / \  / \
-		//    1  3
-
-		// Expect(1).To(Equal(2))
+	It("Calculates Tree height of a complete binary tree", func() {
+		// Given tree:
+		//          50
+		//        /    \
+		//      20      70
+		//     /  \    /   \
+		//    10  30  60    80
+		//   /
+		//  5
+		tree := binaryTree.BinaryTree{}
+		tree.Root = &binaryTree.BinaryTreeNode{50, nil, nil}
+		tree.Root.Left = &binaryTree.BinaryTreeNode{20, nil, nil}
+		tree.Root.Right = &binaryTree.BinaryTreeNode{70, nil, nil}
+		tree.Root.Left.Left = &binaryTree.BinaryTreeNode{10, nil, nil}
+		tree.Root.Right.Left = &binaryTree.BinaryTreeNode{60, nil, nil}
+		tree.Root.Right.Right = &binaryTree.BinaryTreeNode{80, nil, nil}
+		tree.Root.Left.Left.Left = &binaryTree.BinaryTreeNode{5, nil, nil}
+		height := tree.Height(tree.Root)
+		Expect(height).To(Equal(4))
 	})
 
-	// It("Inserts value in the correct position when received in disorder", func() {
-	// 	// Expected tree:
-	// 	//		  4
-	// 	//       / \
-	// 	//      2   7
-	// 	//     / \  / \
-	// 	//    1  3
-	// 	tree := binaryTree.BinaryTree{}
-	// 	// nodes
-	// 	values := []int{4, 7, 2, 3, 1}
-	// 	for _, value := range values {
-	// 		tree.InsertNode(tree.Root, value)
-	// 	}
-	// 	Expect(tree.InOrderTraverse()).To(Equal([]int{4, 2, 7, 1, 3}))
-	// })
-
-	// It("In order transversal", func() {
-	// 	// Given tree:
-	// 	//		   1
-	// 	//       /  \
-	// 	//      2    3
-	// 	//     / \  / \
-	// 	//    4   5
-	// 	tree := binaryTree.BinaryTree{}
-	// 	// nodes
-	// 	values := []int{1, 2, 3, 4, 5}
-	// 	for _, value := range values {
-	// 		tree.InsertNode(tree.Root, value)
-	// 	}
-	// 	tree.InOrderTraverse(tree.Root)
-	// })
-
-	It("In order transversal", func() {
+	It("Calculates Tree height of perfect binary tree", func() {
 		// Given tree:
+		//         50
+		//       /    \
+		//     20      70
+		//    /  \    /   \
+		//   10  30  60    80
+		tree := binaryTree.BinaryTree{}
+		tree.Root = &binaryTree.BinaryTreeNode{50, nil, nil}
+		tree.Root.Left = &binaryTree.BinaryTreeNode{20, nil, nil}
+		tree.Root.Right = &binaryTree.BinaryTreeNode{70, nil, nil}
+		tree.Root.Left.Left = &binaryTree.BinaryTreeNode{10, nil, nil}
+		tree.Root.Right.Left = &binaryTree.BinaryTreeNode{60, nil, nil}
+		tree.Root.Right.Right = &binaryTree.BinaryTreeNode{80, nil, nil}
+		height := tree.Height(tree.Root)
+		Expect(height).To(Equal(3))
+	})
 
+	It("Calculates Tree height of one node", func() {
+		// Given tree:
 		//       10
-		//      /  \
-		//     20   30
-		//    / \     \
-		//   40 50     60
-		//  /
-		// 70
+		tree := binaryTree.BinaryTree{}
+		height := tree.Height(tree.Root)
+		Expect(height).To(Equal(0))
+	})
 
+	It("Calculates Tree height of a semi-degenerate tree", func() {
+		// Given tree:
+		//        1
+		//       /
+		//      3
+		//   	 \
+		//   	  5
+		// 		   \
+		// 			7
+		tree := binaryTree.BinaryTree{}
+		tree.Root = &binaryTree.BinaryTreeNode{1, nil, nil}
+		tree.Root.Left = &binaryTree.BinaryTreeNode{3, nil, nil}
+		tree.Root.Left.Right = &binaryTree.BinaryTreeNode{5, nil, nil}
+		tree.Root.Left.Right.Right = &binaryTree.BinaryTreeNode{7, nil, nil}
+		Expect(tree.Height(tree.Root)).To(Equal(4))
+	})
+
+	It("Calculates Tree of degenerate tree", func() {
+		// Given tree:
+		//       10
+		//         \
+		//          30
+		//            \
+		//             60
+		//   			 \
+		//       		  80
 		tree := binaryTree.BinaryTree{}
 		tree.Root = &binaryTree.BinaryTreeNode{10, nil, nil}
-		tree.Root.Left = &binaryTree.BinaryTreeNode{20, nil, nil}
 		tree.Root.Right = &binaryTree.BinaryTreeNode{30, nil, nil}
 		tree.Root.Right.Right = &binaryTree.BinaryTreeNode{60, nil, nil}
-		tree.Root.Left.Left = &binaryTree.BinaryTreeNode{40, nil, nil}
-		tree.Root.Left.Right = &binaryTree.BinaryTreeNode{50, nil, nil}
-		tree.Root.Left.Left.Left = &binaryTree.BinaryTreeNode{70, nil, nil}
-		tree.InOrderTraverse(tree.Root)
-
-		// Add a good expect here
-		Expect(1).To(Equal(2))
+		tree.Root.Right.Right.Right = &binaryTree.BinaryTreeNode{80, nil, nil}
+		height := tree.Height(tree.Root)
+		Expect(height).To(Equal(4))
 	})
 
+	It("In-order traversal array of a perfect binary tree", func() {
+		// Given tree:
+		//         50
+		//       /    \
+		//     20      70
+		//    /  \    /   \
+		//   10  30  60    80
+		tree := binaryTree.BinaryTree{}
+		tree.Root = &binaryTree.BinaryTreeNode{50, nil, nil}
+		tree.Root.Left = &binaryTree.BinaryTreeNode{20, nil, nil}
+		tree.Root.Right = &binaryTree.BinaryTreeNode{70, nil, nil}
+		tree.Root.Left.Right = &binaryTree.BinaryTreeNode{30, nil, nil}
+		tree.Root.Left.Left = &binaryTree.BinaryTreeNode{10, nil, nil}
+		tree.Root.Right.Left = &binaryTree.BinaryTreeNode{60, nil, nil}
+		tree.Root.Right.Right = &binaryTree.BinaryTreeNode{80, nil, nil}
+		res := []int{10, 20, 30, 50, 60, 70, 80}
+		Expect(tree.InOrderTraverseArray(tree.Root)).To(Equal(res))
+	})
+
+	It("In-order traversal array of a complete binary tree", func() {
+		// Given tree:
+		//       8
+		//      /  \
+		//     4    9
+		//    / \
+		//   3   6
+		tree := binaryTree.BinaryTree{}
+		tree.Root = &binaryTree.BinaryTreeNode{8, nil, nil}
+		tree.Root.Left = &binaryTree.BinaryTreeNode{4, nil, nil}
+		tree.Root.Right = &binaryTree.BinaryTreeNode{9, nil, nil}
+		tree.Root.Left.Left = &binaryTree.BinaryTreeNode{3, nil, nil}
+		tree.Root.Left.Right = &binaryTree.BinaryTreeNode{6, nil, nil}
+		res := []int{3, 4, 6, 8, 9}
+		traverse := tree.InOrderTraverseArray(tree.Root)
+		Expect(traverse).To(Equal(res))
+	})
+
+	It("In-order traversal array of a degenerate tree", func() {
+		// Given tree:
+		//       1
+		//        \
+		//         3
+		//   		\
+		//   		 5
+		// 			  \
+		// 			   7
+		tree := binaryTree.BinaryTree{}
+		tree.Root = &binaryTree.BinaryTreeNode{1, nil, nil}
+		tree.Root.Right = &binaryTree.BinaryTreeNode{3, nil, nil}
+		tree.Root.Right.Right = &binaryTree.BinaryTreeNode{5, nil, nil}
+		tree.Root.Right.Right.Right = &binaryTree.BinaryTreeNode{7, nil, nil}
+		res := []int{1, 3, 5, 7}
+		traverse := tree.InOrderTraverseArray(tree.Root)
+		Expect(traverse).To(Equal(res))
+	})
+
+	It("In-order traversal array of a semi-degenerate tree", func() {
+		// Given tree:
+		//        1
+		//       /
+		//      3
+		//   	 \
+		//   	  5
+		// 		   \
+		// 			7
+		tree := binaryTree.BinaryTree{}
+		tree.Root = &binaryTree.BinaryTreeNode{1, nil, nil}
+		tree.Root.Left = &binaryTree.BinaryTreeNode{3, nil, nil}
+		tree.Root.Left.Right = &binaryTree.BinaryTreeNode{5, nil, nil}
+		tree.Root.Left.Right.Right = &binaryTree.BinaryTreeNode{7, nil, nil}
+		res := []int{3, 5, 7, 1}
+		traverse := tree.InOrderTraverseArray(tree.Root)
+		Expect(traverse).To(Equal(res))
+	})
 })

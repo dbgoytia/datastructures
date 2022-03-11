@@ -55,10 +55,24 @@ func (bst *BinaryTree) InsertNode(root *BinaryTreeNode, val int) *BinaryTreeNode
 	return root
 }
 
-// Returns the In Order Transversal as an slice of values
-// TODO: Implement return
-func (bst *BinaryTree) InOrderTraverse(root *BinaryTreeNode) []int {
+// Calculates the height of the tree
+func (bst *BinaryTree) Height(root *BinaryTreeNode) int {
+	if root == nil {
+		return 0
+	}
 
+	left := bst.Height(root.Left)
+	right := bst.Height(root.Right)
+
+	if left > right {
+		return left + 1
+	} else {
+		return right + 1
+	}
+}
+
+// Returns the In Order Transversal as an slice of values
+func (bst *BinaryTree) InOrderTraverse(root *BinaryTreeNode) {
 	if root == nil {
 		return
 	}
@@ -68,8 +82,20 @@ func (bst *BinaryTree) InOrderTraverse(root *BinaryTreeNode) []int {
 	bst.InOrderTraverse(root.Right)
 }
 
-func (bst *BinaryTree) inOrderTraverseHelper(root *BinaryTreeNode, vals []int) {
+// Returns the In Order Transversal as an slice of values
+func (bst *BinaryTree) InOrderTraverseArray(root *BinaryTreeNode) []int {
+	vals := make([]int, 0)
+	bst.inOrderTraverseArrayHelper(root, &vals)
+	return vals
+}
 
+func (bst *BinaryTree) inOrderTraverseArrayHelper(root *BinaryTreeNode, vals *[]int) {
+	if root == nil {
+		return
+	}
+	bst.inOrderTraverseArrayHelper(root.Left, vals)
+	*vals = append(*vals, root.Val)
+	bst.inOrderTraverseArrayHelper(root.Right, vals)
 }
 
 // Prints a CLI readable rendering of the tree
