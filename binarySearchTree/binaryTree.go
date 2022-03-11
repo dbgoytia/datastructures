@@ -157,6 +157,22 @@ func (bst *BinarySearchTree) breadFirstArrayHelper(root *BinarySearchTreeNode, v
 
 }
 
+// Returns item with the min value stored in tree
+func (n *BinarySearchTreeNode) Min() int {
+	return 0
+}
+
+// Returns item with the max value stored in tree
+func (bst *BinarySearchTree) Max(root *BinarySearchTreeNode) int {
+	n := root
+	for {
+		if n.Right == nil {
+			return n.Val
+		}
+		n = n.Right
+	}
+}
+
 // Prints a CLI readable rendering of the tree
 func (n *BinarySearchTreeNode) String() {
 }
@@ -174,16 +190,6 @@ func (n *BinarySearchTreeNode) PreOrderTraverse() {
 // Visits all nodes with post-order traversing
 func (n *BinarySearchTreeNode) PostOrderTraverse() {
 
-}
-
-// Returns item with the min value stored in tree
-func (n *BinarySearchTreeNode) Min() int {
-	return 0
-}
-
-// Returns item with the max value stored in tree
-func (n *BinarySearchTreeNode) Max() int {
-	return 0
 }
 
 // Removes the item from the Binary tree

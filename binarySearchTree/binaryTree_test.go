@@ -353,7 +353,7 @@ var _ = Describe("BinarySearchTree", func() {
 				tree.Root.Right.Left = &binarySearchTree.BinarySearchTreeNode{60, nil, nil}
 				tree.Root.Right.Right = &binarySearchTree.BinarySearchTreeNode{80, nil, nil}
 				res := []int{50, 20, 70, 10, 30, 60, 80}
-				Expect(tree.PostOrderTraverseArray(tree.Root)).To(Equal(res))
+				Expect(tree.BreadFirstArray(tree.Root)).To(Equal(res))
 			})
 
 			It("for complete binary tree", func() {
@@ -408,6 +408,78 @@ var _ = Describe("BinarySearchTree", func() {
 				res := []int{1, 3, 5, 7}
 				traverse := tree.BreadFirstArray(tree.Root)
 				Expect(traverse).To(Equal(res))
+			})
+
+		})
+
+		Context("calculates Max value in a tree", func() {
+
+			It("for perfect binary tree", func() {
+				// Given tree:
+				//         50
+				//       /    \
+				//     20      70
+				//    /  \    /   \
+				//   10  30  60    80
+				tree := binarySearchTree.BinarySearchTree{}
+				tree.Root = &binarySearchTree.BinarySearchTreeNode{50, nil, nil}
+				tree.Root.Left = &binarySearchTree.BinarySearchTreeNode{20, nil, nil}
+				tree.Root.Right = &binarySearchTree.BinarySearchTreeNode{70, nil, nil}
+				tree.Root.Left.Right = &binarySearchTree.BinarySearchTreeNode{30, nil, nil}
+				tree.Root.Left.Left = &binarySearchTree.BinarySearchTreeNode{10, nil, nil}
+				tree.Root.Right.Left = &binarySearchTree.BinarySearchTreeNode{60, nil, nil}
+				tree.Root.Right.Right = &binarySearchTree.BinarySearchTreeNode{80, nil, nil}
+				Expect(tree.Max(tree.Root)).To(Equal(80))
+			})
+
+			It("for complete binary tree", func() {
+				// Given tree:
+				//       8
+				//      /  \
+				//     4    9
+				//    / \
+				//   3   6
+				tree := binarySearchTree.BinarySearchTree{}
+				tree.Root = &binarySearchTree.BinarySearchTreeNode{8, nil, nil}
+				tree.Root.Left = &binarySearchTree.BinarySearchTreeNode{4, nil, nil}
+				tree.Root.Right = &binarySearchTree.BinarySearchTreeNode{9, nil, nil}
+				tree.Root.Left.Left = &binarySearchTree.BinarySearchTreeNode{3, nil, nil}
+				tree.Root.Left.Right = &binarySearchTree.BinarySearchTreeNode{6, nil, nil}
+				Expect(tree.Max(tree.Root)).To(Equal(9))
+			})
+
+			It("for degenerate tree", func() {
+				// Given tree:
+				//       1
+				//        \
+				//         3
+				//   		\
+				//   		 5
+				// 			  \
+				// 			   7
+				tree := binarySearchTree.BinarySearchTree{}
+				tree.Root = &binarySearchTree.BinarySearchTreeNode{1, nil, nil}
+				tree.Root.Right = &binarySearchTree.BinarySearchTreeNode{3, nil, nil}
+				tree.Root.Right.Right = &binarySearchTree.BinarySearchTreeNode{5, nil, nil}
+				tree.Root.Right.Right.Right = &binarySearchTree.BinarySearchTreeNode{7, nil, nil}
+				Expect(tree.Max(tree.Root)).To(Equal(7))
+			})
+
+			It("for semi-degenerate tree", func() {
+				// Given tree:
+				//        12
+				//       /
+				//      3
+				//   	 \
+				//   	  5
+				// 		   \
+				// 			7
+				tree := binarySearchTree.BinarySearchTree{}
+				tree.Root = &binarySearchTree.BinarySearchTreeNode{12, nil, nil}
+				tree.Root.Left = &binarySearchTree.BinarySearchTreeNode{3, nil, nil}
+				tree.Root.Left.Right = &binarySearchTree.BinarySearchTreeNode{5, nil, nil}
+				tree.Root.Left.Right.Right = &binarySearchTree.BinarySearchTreeNode{7, nil, nil}
+				Expect(tree.Max(tree.Root)).To(Equal(12))
 			})
 
 		})
