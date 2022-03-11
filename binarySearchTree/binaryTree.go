@@ -179,23 +179,9 @@ func (bst *BinarySearchTree) Max(root *BinarySearchTreeNode) int {
 	}
 }
 
-// Prints a CLI readable rendering of the tree
-func (n *BinarySearchTreeNode) String() {
-}
-
 // Returns true if Item exists in tree
 func (n *BinarySearchTreeNode) Search(value int) bool {
 	return true
-}
-
-// Visits all nodes in pre-order traversing
-func (n *BinarySearchTreeNode) PreOrderTraverse() {
-
-}
-
-// Visits all nodes with post-order traversing
-func (n *BinarySearchTreeNode) PostOrderTraverse() {
-
 }
 
 // Removes the item from the Binary tree
