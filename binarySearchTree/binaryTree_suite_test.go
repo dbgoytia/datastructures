@@ -1,4 +1,4 @@
-package binaryTree_test
+package binarySearchTree_test
 
 import (
 	"testing"
@@ -9,5 +9,5 @@ import (
 
 func TestBinaryTree(t *testing.T) {
 	RegisterFailHandler(Fail)
-	RunSpecs(t, "BinaryTree Suite")
+	RunSpecs(t, "binarySearchTree Suite")
 }

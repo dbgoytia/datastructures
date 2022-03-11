@@ -1,20 +1,20 @@
-package binaryTree
+package binarySearchTree
 
 import "fmt"
 
-type BinaryTree struct {
-	Root *BinaryTreeNode
+type BinarySearchTree struct {
+	Root *BinarySearchTreeNode
 }
 
-type BinaryTreeNode struct {
+type BinarySearchTreeNode struct {
 	Val   int
-	Left  *BinaryTreeNode
-	Right *BinaryTreeNode
+	Left  *BinarySearchTreeNode
+	Right *BinarySearchTreeNode
 }
 
 // Creates a new node in the binary tree
-func NewNode(val int) BinaryTreeNode {
-	return BinaryTreeNode{
+func NewNode(val int) BinarySearchTreeNode {
+	return BinarySearchTreeNode{
 		Val:   val,
 		Left:  nil,
 		Right: nil,
@@ -23,10 +23,10 @@ func NewNode(val int) BinaryTreeNode {
 
 // Inserts a new node on the binary tree
 // or returns an error otherwise
-func (bst *BinaryTree) InsertNode(root *BinaryTreeNode, val int) *BinaryTreeNode {
+func (bst *BinarySearchTree) InsertNode(root *BinarySearchTreeNode, val int) *BinarySearchTreeNode {
 
 	if root == nil {
-		return &BinaryTreeNode{
+		return &BinarySearchTreeNode{
 			Val:   val,
 			Left:  nil,
 			Right: nil,
@@ -35,7 +35,7 @@ func (bst *BinaryTree) InsertNode(root *BinaryTreeNode, val int) *BinaryTreeNode
 
 	if val > root.Val {
 		if root.Right == nil {
-			n := &BinaryTreeNode{
+			n := &BinarySearchTreeNode{
 				Val:   val,
 				Left:  nil,
 				Right: nil,
@@ -47,7 +47,7 @@ func (bst *BinaryTree) InsertNode(root *BinaryTreeNode, val int) *BinaryTreeNode
 
 	} else if val < root.Val {
 		if root.Left == nil {
-			root.Left = &BinaryTreeNode{val, nil, nil}
+			root.Left = &BinarySearchTreeNode{val, nil, nil}
 		} else {
 			bst.InsertNode(root.Left, val)
 		}
@@ -56,7 +56,7 @@ func (bst *BinaryTree) InsertNode(root *BinaryTreeNode, val int) *BinaryTreeNode
 }
 
 // Calculates the height of the tree
-func (bst *BinaryTree) Height(root *BinaryTreeNode) int {
+func (bst *BinarySearchTree) Height(root *BinarySearchTreeNode) int {
 	if root == nil {
 		return 0
 	}
@@ -72,7 +72,7 @@ func (bst *BinaryTree) Height(root *BinaryTreeNode) int {
 }
 
 // Returns the In Order Transversal as an slice of values
-func (bst *BinaryTree) InOrderTraverse(root *BinaryTreeNode) {
+func (bst *BinarySearchTree) InOrderTraverse(root *BinarySearchTreeNode) {
 	if root == nil {
 		return
 	}
@@ -83,13 +83,13 @@ func (bst *BinaryTree) InOrderTraverse(root *BinaryTreeNode) {
 }
 
 // Returns the In Order Transversal as an slice of values
-func (bst *BinaryTree) InOrderTraverseArray(root *BinaryTreeNode) []int {
+func (bst *BinarySearchTree) InOrderTraverseArray(root *BinarySearchTreeNode) []int {
 	vals := make([]int, 0)
 	bst.inOrderTraverseArrayHelper(root, &vals)
 	return vals
 }
 
-func (bst *BinaryTree) inOrderTraverseArrayHelper(root *BinaryTreeNode, vals *[]int) {
+func (bst *BinarySearchTree) inOrderTraverseArrayHelper(root *BinarySearchTreeNode, vals *[]int) {
 	if root == nil {
 		return
 	}
@@ -99,13 +99,13 @@ func (bst *BinaryTree) inOrderTraverseArrayHelper(root *BinaryTreeNode, vals *[]
 }
 
 // Returns the In Order Transversal as an slice of values
-func (bst *BinaryTree) PreOrderTraverseArray(root *BinaryTreeNode) []int {
+func (bst *BinarySearchTree) PreOrderTraverseArray(root *BinarySearchTreeNode) []int {
 	vals := make([]int, 0)
 	bst.preOrderTraverseArrayHelper(root, &vals)
 	return vals
 }
 
-func (bst *BinaryTree) preOrderTraverseArrayHelper(root *BinaryTreeNode, vals *[]int) {
+func (bst *BinarySearchTree) preOrderTraverseArrayHelper(root *BinarySearchTreeNode, vals *[]int) {
 	if root == nil {
 		return
 	}
@@ -115,34 +115,34 @@ func (bst *BinaryTree) preOrderTraverseArrayHelper(root *BinaryTreeNode, vals *[
 }
 
 // Prints a CLI readable rendering of the tree
-func (n *BinaryTreeNode) String() {
+func (n *BinarySearchTreeNode) String() {
 }
 
 // Returns true if Item exists in tree
-func (n *BinaryTreeNode) Search(value int) bool {
+func (n *BinarySearchTreeNode) Search(value int) bool {
 	return true
 }
 
 // Visits all nodes in pre-order traversing
-func (n *BinaryTreeNode) PreOrderTraverse() {
+func (n *BinarySearchTreeNode) PreOrderTraverse() {
 
 }
 
 // Visits all nodes with post-order traversing
-func (n *BinaryTreeNode) PostOrderTraverse() {
+func (n *BinarySearchTreeNode) PostOrderTraverse() {
 
 }
 
 // Returns item with the min value stored in tree
-func (n *BinaryTreeNode) Min() int {
+func (n *BinarySearchTreeNode) Min() int {
 	return 0
 }
 
 // Returns item with the max value stored in tree
-func (n *BinaryTreeNode) Max() int {
+func (n *BinarySearchTreeNode) Max() int {
 	return 0
 }
 
 // Removes the item from the Binary tree
-func (n *BinaryTreeNode) Remove(t BinaryTreeNode) {
+func (n *BinarySearchTreeNode) Remove(t BinarySearchTreeNode) {
 }
