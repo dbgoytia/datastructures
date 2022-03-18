@@ -1,6 +1,8 @@
 package binarySearchTree
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type BinarySearchTree struct {
 	Root *BinarySearchTreeNode
@@ -164,7 +166,32 @@ func (bst *BinarySearchTree) breadFirstArrayHelper(root *BinarySearchTreeNode, v
 		bst.breadFirstArrayHelper(root.Left, vals, level-1)
 		bst.breadFirstArrayHelper(root.Right, vals, level-1)
 	}
+}
 
+// Iterative implementation of the Breadth-First Search
+func (bst *BinarySearchTree) BFTIterative() []int {
+
+	bft := make([]int, 0)
+
+	queue := make([]*BinarySearchTreeNode, 0)
+	queue = append(queue, bst.Root)
+
+	for len(queue) > 0 {
+		bft = append(bft, queue[0].Val)
+
+		node := queue[0]
+		queue = append(queue[:0], queue[1:]...)
+
+		if node.Left != nil {
+			queue = append(queue, node.Left)
+		}
+
+		if node.Right != nil {
+			queue = append(queue, node.Right)
+		}
+	}
+
+	return bft
 }
 
 // Returns item with the min value stored in tree

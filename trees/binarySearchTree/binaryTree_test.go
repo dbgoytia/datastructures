@@ -394,7 +394,7 @@ var _ = Describe("BinarySearchTree", func() {
 			})
 		})
 
-		Context("perform bread-first traversal array of a tree", func() {
+		Context("perform breadth-first traversal array of a tree", func() {
 
 			It("for perfect binary tree", func() {
 				// Given tree:
@@ -621,6 +621,81 @@ var _ = Describe("BinarySearchTree", func() {
 				Expect(tree.BinarySearch(tree.Root, 12)).To(Equal(true))
 			})
 
+		})
+
+		Context("perform breadth-first traversal array of a tree - iterative", func() {
+
+			It("for perfect binary tree", func() {
+				// Given tree:
+				//         50
+				//       /    \
+				//     20      70
+				//    /  \    /   \
+				//   10  30  60    80
+				tree := binarySearchTree.BinarySearchTree{}
+				tree.InsertNode(50)
+				tree.InsertNode(20)
+				tree.InsertNode(70)
+				tree.InsertNode(30)
+				tree.InsertNode(10)
+				tree.InsertNode(60)
+				tree.InsertNode(80)
+				res := []int{50, 20, 70, 10, 30, 60, 80}
+				Expect(tree.BFTIterative()).To(Equal(res))
+			})
+
+			It("for complete binary tree", func() {
+				// Given tree:
+				//       8
+				//      /  \
+				//     4    9
+				//    / \
+				//   3   6
+				tree := binarySearchTree.BinarySearchTree{}
+				tree.InsertNode(8)
+				tree.InsertNode(4)
+				tree.InsertNode(9)
+				tree.InsertNode(3)
+				tree.InsertNode(6)
+				res := []int{8, 4, 9, 3, 6}
+				Expect(tree.BFTIterative()).To(Equal(res))
+			})
+
+			It("on degenerate tree", func() {
+				// Given tree:
+				//       1
+				//        \
+				//         3
+				//   		\
+				//   		 5
+				// 			  \
+				// 			   7
+				tree := binarySearchTree.BinarySearchTree{}
+				tree.InsertNode(1)
+				tree.InsertNode(3)
+				tree.InsertNode(5)
+				tree.InsertNode(7)
+				res := []int{1, 3, 5, 7}
+				Expect(tree.BFTIterative()).To(Equal(res))
+			})
+
+			It("on semi-degenerate tree", func() {
+				// Given tree:
+				//       1
+				//        \
+				//         3
+				//   		\
+				//   		 5
+				// 			  \
+				// 			   7
+				tree := binarySearchTree.BinarySearchTree{}
+				tree.InsertNode(1)
+				tree.InsertNode(3)
+				tree.InsertNode(5)
+				tree.InsertNode(7)
+				res := []int{1, 3, 5, 7}
+				Expect(tree.BFTIterative()).To(Equal(res))
+			})
 		})
 
 	})
