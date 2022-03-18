@@ -72,7 +72,7 @@ Algorithm PreOrder(tree) (Depth-First Search)
 
 Represented as:
 
-[50, 20, 10, 30, 60, 60, 80] <--- This is called in depth-first traversal
+[50, 20, 10, 30, 70, 60, 80] <--- This is called in depth-first traversal
 
 ```
 
